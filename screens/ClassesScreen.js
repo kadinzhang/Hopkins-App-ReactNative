@@ -33,7 +33,7 @@ export default class ClassesScreen extends React.Component {
 							<MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
 						</View>
 
-						<Text style={styles.getStartedText}>kadin a big hoe</Text>
+						<Text style={styles.getStartedText}>Kadin can suka mah dik</Text>
 					</View>
 
 					<View style={styles.helpContainer}>
