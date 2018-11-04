@@ -1,6 +1,7 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
 import TabBarIcon from '../components/TabBarIcon';
 import ScheduleScreen from '../screens/ScheduleScreen';
@@ -11,51 +12,43 @@ import SettingsScreen from '../screens/SettingsScreen';
 const ClassesStack = createStackNavigator({
 	Classes: ClassesScreen,
 });
-
 ClassesStack.navigationOptions = {
 	tabBarLabel: 'Classes',
 	tabBarIcon: ({ focused }) => (
 		<TabBarIcon
 			focused={focused}
-			name={
-				Platform.OS === 'ios' ? `ios-information-circle${focused ? '' : '-outline'}` : 'md-information-circle'
-			}
+			name={Platform.OS === 'ios' ? `ios-information-circle${focused ? '' : '-outline'}` : 'md-book'}
 		/>
 	),
 };
 
+//Lunch Tab
 const LunchStack = createStackNavigator({
 	Lunch: LunchScreen,
 });
-
-const Schedule = createStackNavigator({
-	Schedule: ScheduleScreen,
-});
-
-Schedule.navigationOptions = {
-	tabBarLabel: 'Schedule',
-	tabBarIcon: ({ focused }) => (
-		<TabBarIcon
-			focused={focused}
-			name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
-		/>
-	),
-};
-
 LunchStack.navigationOptions = {
 	tabBarLabel: 'Lunch',
 	tabBarIcon: ({ focused }) => (
 		<TabBarIcon
 			focused={focused}
-			name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
+			name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-pizza'}
 		/>
 	),
 };
 
+//Schedule Tab
+const Schedule = createStackNavigator({
+	Schedule: ScheduleScreen,
+});
+Schedule.navigationOptions = {
+	tabBarLabel: 'Schedule',
+	tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name={'md-list'} />,
+};
+
+//Settings tab
 const SettingsStack = createStackNavigator({
 	Settings: SettingsScreen,
 });
-
 SettingsStack.navigationOptions = {
 	tabBarLabel: 'Settings',
 	tabBarIcon: ({ focused }) => (
@@ -66,9 +59,17 @@ SettingsStack.navigationOptions = {
 	),
 };
 
-export default createBottomTabNavigator({
-	Schedule,
-	ClassesStack,
-	LunchStack,
-	SettingsStack,
-});
+export default createMaterialBottomTabNavigator(
+	{
+		Schedule,
+		ClassesStack,
+		LunchStack,
+		SettingsStack,
+	},
+	{
+		initialRouteName: 'ClassesStack',
+		activeColor: '#f0edf6',
+		inactiveColor: '#3e2465',
+		barStyle: { backgroundColor: '#500000' },
+	}
+);
