@@ -37,10 +37,10 @@ LunchStack.navigationOptions = {
 };
 
 //Schedule Tab
-const Schedule = createStackNavigator({
-	Schedule: ScheduleScreen,
+const ScheduleStack = createStackNavigator({
+	ScheduleStack: ScheduleScreen,
 });
-Schedule.navigationOptions = {
+ScheduleStack.navigationOptions = {
 	tabBarLabel: 'Schedule',
 	tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name={'md-list'} />,
 };
@@ -61,7 +61,7 @@ SettingsStack.navigationOptions = {
 
 export default createMaterialBottomTabNavigator(
 	{
-		Schedule,
+		ScheduleStack,
 		ClassesStack,
 		LunchStack,
 		SettingsStack,
