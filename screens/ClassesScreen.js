@@ -67,7 +67,7 @@ export default class ScheduleScreen extends React.Component {
 							<Text style={styles.bigLettersText}>D</Text>
 						</View>
 						<View style={styles.optionTextContainer}>
-							<Text style={styles.optionText}>Lorum ipsum teloris something</Text>
+							<Text style={styles.optionText}>Alex a dumbass micless hoe</Text>
 						</View>
 					</View>
 				</Touchable>
