@@ -59,6 +59,21 @@ SettingsStack.navigationOptions = {
 	),
 };
 
+// const AddClass = createStackNavigator(
+// 	{
+// 		Main: {
+// 			screen: ClassesScreen,
+// 		},
+// 		MyModal: {
+// 			screen: ModalScreen,
+// 		},
+// 	},
+// 	{
+// 		mode: 'modal',
+// 		headerMode: 'none',
+// 	}
+// );
+
 export default createMaterialBottomTabNavigator(
 	{
 		ScheduleStack,
