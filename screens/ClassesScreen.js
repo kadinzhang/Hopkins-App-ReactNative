@@ -1,12 +1,24 @@
 import React from 'react';
-import { StyleSheet, ScrollView, Text, View } from 'react-native';
-import { WebBrowser } from 'expo';
+import { StyleSheet, ScrollView, Text, View, Button } from 'react-native';
+import { WebBrowser, Icon } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import Touchable from 'react-native-platform-touchable';
 
 export default class ScheduleScreen extends React.Component {
-	static navigationOptions = {
-		title: 'Classes',
+	static navigationOptions = ({ navigation }) => {
+		const params = navigation.state.params || {};
+		return {
+			title: 'Classes',
+			headerRight: (
+				<Icon.Ionicons
+					onPress={() => alert('This is a button!')}
+					name="md-add"
+					size={35}
+					style={{ padding: 15 }}
+					color="#800000"
+				/>
+			),
+		};
 	};
 
 	render() {
