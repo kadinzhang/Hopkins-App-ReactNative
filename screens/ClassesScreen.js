@@ -3,7 +3,8 @@ import { StyleSheet, ScrollView, Text, TextInput, View, Button } from 'react-nat
 import { WebBrowser, Icon } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import Touchable from 'react-native-platform-touchable';
-
+import { StackNavigator } from 'react-navigation';
+import ModalScreen from './ModalScreen';
 
 export default class ScheduleScreen extends React.Component {
 	//TOPBAR
@@ -11,22 +12,22 @@ export default class ScheduleScreen extends React.Component {
 		const params = navigation.state.params || {};
 		return {
 			title: 'Classes',
-			
 		};
 	};
-	
+
 	constructor(props) {
 		super(props);
-		this.state = { blockA: "",
-			blockB: "",
-			blockC: "",
-			blockD: "", 
-			blockE: "", 
-			blockF: "",
-			blockG: "",
-			blockH: "" 
+		this.state = {
+			blockA: '',
+			blockB: '',
+			blockC: '',
+			blockD: '',
+			blockE: '',
+			blockF: '',
+			blockG: '',
+			blockH: '',
 		};
-	  }
+	}
 
 	render() {
 		return (
@@ -34,7 +35,9 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={this._handlePressClassesA}
+					onPress={() => {
+						this.props.navigation.navigate('Modal');
+					}}
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
@@ -151,20 +154,6 @@ export default class ScheduleScreen extends React.Component {
 					</View>
 				</Touchable>
 			</ScrollView>
-		);
-	}
-}
-
-class ModalScreen extends React.Component {
-	render() {
-		return (
-			<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-				<Text style={{ fontSize: 30 }}>This is a modal!</Text>
-				<Button
-					onPress={() => this.props.navigation.goBack()}
-					title="Dismiss"
-				/>
-			</View>
 		);
 	}
 }

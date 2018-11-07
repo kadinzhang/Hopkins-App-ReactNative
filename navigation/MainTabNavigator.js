@@ -8,9 +8,11 @@ import ScheduleScreen from '../screens/ScheduleScreen';
 import ClassesScreen from '../screens/ClassesScreen';
 import LunchScreen from '../screens/LunchScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import ModalScreen from '../screens/ModalScreen';
 
 const ClassesStack = createStackNavigator({
-	Classes: ClassesScreen,
+	Classes: { screen: ClassesScreen },
+	Modal: { screen: ModalScreen },
 });
 ClassesStack.navigationOptions = {
 	tabBarLabel: 'Classes',
@@ -59,30 +61,15 @@ SettingsStack.navigationOptions = {
 	),
 };
 
-// const AddClass = createStackNavigator(
-// 	{
-// 		Main: {
-// 			screen: ClassesScreen,
-// 		},
-// 		MyModal: {
-// 			screen: ModalScreen,
-// 		},
-// 	},
-// 	{
-// 		mode: 'modal',
-// 		headerMode: 'none',
-// 	}
-// );
-
 export default createMaterialBottomTabNavigator(
 	{
-		ScheduleStack,
-		ClassesStack,
-		LunchStack,
-		SettingsStack,
+		Schedule: { screen: ScheduleStack },
+		Classes: { screen: ClassesStack },
+		Lunch: { screen: LunchStack },
+		Settings: { screen: SettingsStack },
 	},
 	{
-		initialRouteName: 'ClassesStack',
+		initialRouteName: 'Classes',
 		activeColor: '#f0edf6',
 		inactiveColor: '#3e2465',
 		barStyle: { backgroundColor: '#500000' },
