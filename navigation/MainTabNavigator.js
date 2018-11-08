@@ -8,11 +8,11 @@ import ScheduleScreen from '../screens/ScheduleScreen';
 import ClassesScreen from '../screens/ClassesScreen';
 import LunchScreen from '../screens/LunchScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-import ModalScreen from '../screens/ModalScreen';
+import AddClassScreen from '../screens/AddClassScreen';
 
 const ClassesStack = createStackNavigator({
 	Classes: { screen: ClassesScreen },
-	Modal: { screen: ModalScreen },
+	AddClass: { screen: AddClassScreen },
 });
 ClassesStack.navigationOptions = {
 	tabBarLabel: 'Classes',
@@ -22,6 +22,7 @@ ClassesStack.navigationOptions = {
 			name={Platform.OS === 'ios' ? `ios-information-circle${focused ? '' : '-outline'}` : 'md-book'}
 		/>
 	),
+	gesturesEnabled: true,
 };
 
 //Lunch Tab
@@ -36,6 +37,7 @@ LunchStack.navigationOptions = {
 			name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-pizza'}
 		/>
 	),
+	gesturesEnabled: true,
 };
 
 //Schedule Tab
@@ -45,6 +47,7 @@ const ScheduleStack = createStackNavigator({
 ScheduleStack.navigationOptions = {
 	tabBarLabel: 'Schedule',
 	tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name={'md-list'} />,
+	gesturesEnabled: true,
 };
 
 //Settings tab
@@ -59,6 +62,7 @@ SettingsStack.navigationOptions = {
 			name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
 		/>
 	),
+	gesturesEnabled: true,
 };
 
 export default createMaterialBottomTabNavigator(
@@ -72,6 +76,7 @@ export default createMaterialBottomTabNavigator(
 		initialRouteName: 'Classes',
 		activeColor: '#f0edf6',
 		inactiveColor: '#3e2465',
+		swipeEnabled: true,
 		barStyle: { backgroundColor: '#500000' },
 	}
 );

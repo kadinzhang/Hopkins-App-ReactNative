@@ -4,7 +4,7 @@ import { WebBrowser, Icon } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import Touchable from 'react-native-platform-touchable';
 import { StackNavigator } from 'react-navigation';
-import ModalScreen from './ModalScreen';
+import AddClass from './AddClassScreen';
 
 export default class ScheduleScreen extends React.Component {
 	//TOPBAR
@@ -18,16 +18,22 @@ export default class ScheduleScreen extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			blockA: '',
-			blockB: '',
-			blockC: '',
-			blockD: '',
-			blockE: '',
-			blockF: '',
-			blockG: '',
-			blockH: '',
+			A: '',
+			B: '',
+			C: '',
+			D: '',
+			E: '',
+			F: '',
+			G: '',
+			H: '',
 		};
 	}
+
+	updateClass = (block, stateObject) => {
+		this.setState({
+			block: stateObject,
+		});
+	};
 
 	render() {
 		return (
@@ -35,16 +41,18 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={() => {
-						this.props.navigation.navigate('Modal');
-					}}
+					onPress={() =>
+						this.props.navigation.navigate('AddClass', {
+							updateClass: info => this.setState(prevState => ({ A: info })),
+						})
+					}
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
 							<Text style={styles.bigLettersText}>A</Text>
 						</View>
 						<View style={styles.optionTextContainer}>
-							<Text style={styles.optionText}>{this.state.blockA}</Text>
+							<Text style={styles.optionText}>{this.state.A}</Text>
 						</View>
 					</View>
 				</Touchable>
@@ -52,7 +60,7 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={this._handlePressClassesB}
+					onPress={() => this.props.navigation.navigate('AddClass')}
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
@@ -67,7 +75,7 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={this._handlePressClassesC}
+					onPress={() => this.props.navigation.navigate('AddClass')}
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
@@ -82,7 +90,7 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={this._handlePressClassesD}
+					onPress={() => this.props.navigation.navigate('AddClass')}
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
@@ -97,7 +105,7 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={this._handlePressClassesE}
+					onPress={() => this.props.navigation.navigate('AddClass')}
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
@@ -112,7 +120,7 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={this._handlePressClassesF}
+					onPress={() => this.props.navigation.navigate('AddClass')}
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
@@ -127,7 +135,7 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={this._handlePressClassesG}
+					onPress={() => this.props.navigation.navigate('AddClass')}
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
@@ -142,7 +150,7 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={this._handlePressClassesH}
+					onPress={() => this.props.navigation.navigate('AddClass')}
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
