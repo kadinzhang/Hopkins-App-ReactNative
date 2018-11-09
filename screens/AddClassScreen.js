@@ -8,7 +8,7 @@ export default class AddClassScreen extends React.Component {
 	static navigationOptions = ({ navigation }) => {
 		const params = navigation.state.params || {};
 		return {
-			title: 'Edit  Class',
+			title: 'Edit Class',
 		};
 	};
 

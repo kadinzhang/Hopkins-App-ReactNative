@@ -18,7 +18,8 @@ export default class ScheduleScreen extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			A: '',
+			A: 'asdf',
+			keyA: 'blockA',
 			B: '',
 			C: '',
 			D: '',
@@ -28,6 +29,7 @@ export default class ScheduleScreen extends React.Component {
 			H: '',
 		};
 	}
+
 	uploadToAsync = async (value, key) => {
 		try {
 			await AsyncStorage.setItem({ key }, { value });
@@ -35,6 +37,17 @@ export default class ScheduleScreen extends React.Component {
 			console.log('Error sending to async storage');
 		}
 	};
+	_retrieveData = async key => {
+		try {
+			const value = await AsyncStorage.getItem({ key });
+			if (value !== null) {
+				console.log(value);
+			}
+		} catch (error) {
+			console.log('Error pulling from async storage');
+		}
+	};
+
 	updateClass = (block, stateObject) => {
 		this.setState({
 			block: stateObject,
@@ -47,11 +60,7 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={() =>
-						this.props.navigation.navigate('AddClass', {
-							updateClass: info => this.setState(prevState => ({ A: info })),
-						})
-					}
+					onPress={_retrieveData('blockA')}
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
@@ -66,11 +75,7 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={() =>
-						this.props.navigation.navigate('AddClass', {
-							updateClass: info => this.setState(prevState => ({ B: info })),
-						})
-					}
+					onPress={this.uploadToAsync('hello', 'blockA')}
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
