@@ -73,18 +73,7 @@ export default class ScheduleScreen extends React.Component {
 		  </View>
 		);
 	}
-	_handlePressSlack = () => {
-	WebBrowser.openBrowserAsync('https://slack.expo.io');
-	};
 
-	_handlePressDocs = () => {
-	WebBrowser.openBrowserAsync('http://docs.expo.io');
-	};
-
-	_handlePressForums = () => {
-	WebBrowser.openBrowserAsync('http://forums.expo.io');
-	};
-}
 
 const styles = StyleSheet.create({
 	container: {

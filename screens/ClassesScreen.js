@@ -60,14 +60,18 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={() => this.props.navigation.navigate('AddClass')}
+					onPress={() =>
+						this.props.navigation.navigate('AddClass', {
+							updateClass: info => this.setState(prevState => ({ B: info })),
+						})
+					}
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
 							<Text style={styles.bigLettersText}>B</Text>
 						</View>
 						<View style={styles.optionTextContainer}>
-							<Text style={styles.optionText}>{this.state.blockB}</Text>
+							<Text style={styles.optionText}>{this.state.B}</Text>
 						</View>
 					</View>
 				</Touchable>
