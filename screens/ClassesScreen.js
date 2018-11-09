@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, Text, TextInput, View, Button } from 'react-native';
+import { AsyncStorage, StyleSheet, ScrollView, Text, TextInput, View, Button } from 'react-native';
 import { WebBrowser, Icon } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import Touchable from 'react-native-platform-touchable';
@@ -28,7 +28,13 @@ export default class ScheduleScreen extends React.Component {
 			H: '',
 		};
 	}
-
+	uploadToAsync = async (value, key) => {
+		try {
+			await AsyncStorage.setItem({ key }, { value });
+		} catch (error) {
+			console.log('Error sending to async storage');
+		}
+	};
 	updateClass = (block, stateObject) => {
 		this.setState({
 			block: stateObject,
