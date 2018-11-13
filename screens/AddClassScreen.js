@@ -32,7 +32,7 @@ export default class AddClassScreen extends React.Component {
 				<Button
 					title="submit"
 					onPress={() => {
-						this.props.navigation.state.params.updateClass(this.state.text);
+						this.props.navigation.state.params._storeData('@ihop:A.class', this.state.text);
 						this.props.navigation.navigate('Classes');
 					}}
 				/>

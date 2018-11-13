@@ -40,26 +40,20 @@ export default class ScheduleScreen extends React.Component {
 			console.log('Error pulling from async storage');
 }
 	  }
-	_storeData = async () => {
+	_storeData = async (key, value) => {
 		try {
-		  await AsyncStorage.setItem('@ihop:12345', 'kadin I think I did the do');
-		  console.log("saved to async storage");
+		  await AsyncStorage.setItem(key, value);
+		  console.log("Saved to async storage", value);
 		} catch (error) {
 			console.log('Error pushing to async storage');
 		}
 	  }
-	// uploadToAsync = async (value, key) => {
-	// 	try {
-	// 		await AsyncStorage.setItem({ key }, { value });
-	// 	} catch (error) {
-	// 		console.log('Error sending to async storage');
-	// 	}
+
+	// updateClass = (block, stateObject) => {
+	// 	this.setState({
+	// 		block: stateObject,
+	// 	});
 	// };
-	updateClass = (block, stateObject) => {
-		this.setState({
-			block: stateObject,
-		});
-	};
 
 	render() {
 		return (
@@ -67,7 +61,11 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={() => this._storeData()}
+					onPress={
+						() => this.props.navigation.navigate('AddClass', {
+							_storeData: this._storeData.bind(this)
+						})
+}
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
