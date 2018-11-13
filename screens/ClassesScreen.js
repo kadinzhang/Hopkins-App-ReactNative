@@ -18,10 +18,9 @@ export default class ScheduleScreen extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			A: 'asdf',
-			keyA: 'blockA',
-			B: '',
-			C: '',
+			A: 'A',
+			B: 'B',
+			C: 'C',
 			D: '',
 			E: '',
 			F: '',
@@ -30,24 +29,32 @@ export default class ScheduleScreen extends React.Component {
 		};
 	}
 
-	uploadToAsync = async (value, key) => {
+	_retrieveData = async (key) => {
 		try {
-			await AsyncStorage.setItem({ key }, { value });
-		} catch (error) {
-			console.log('Error sending to async storage');
-		}
-	};
-	_retrieveData = async key => {
-		try {
-			const value = await AsyncStorage.getItem({ key });
-			if (value !== null) {
-				console.log(value);
-			}
-		} catch (error) {
+		  const value = await AsyncStorage.getItem(key);
+		  if (value !== null) {
+			// We have data!!
+			console.log(value);
+		  }
+		 } catch (error) {
 			console.log('Error pulling from async storage');
+}
+	  }
+	_storeData = async () => {
+		try {
+		  await AsyncStorage.setItem('@ihop:12345', 'kadin I think I did the do');
+		  console.log("saved to async storage");
+		} catch (error) {
+			console.log('Error pushing to async storage');
 		}
-	};
-
+	  }
+	// uploadToAsync = async (value, key) => {
+	// 	try {
+	// 		await AsyncStorage.setItem({ key }, { value });
+	// 	} catch (error) {
+	// 		console.log('Error sending to async storage');
+	// 	}
+	// };
 	updateClass = (block, stateObject) => {
 		this.setState({
 			block: stateObject,
@@ -60,7 +67,7 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={_retrieveData('blockA')}
+					onPress={() => this._storeData()}
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
@@ -75,7 +82,7 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={this.uploadToAsync('hello', 'blockA')}
+					onPress={() => this._retrieveData('@ihop:12345')}
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
