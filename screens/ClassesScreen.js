@@ -21,20 +21,29 @@ export default class ScheduleScreen extends React.Component {
 			A: 'A',
 			B: 'B',
 			C: 'C',
-			D: '',
-			E: '',
-			F: '',
-			G: '',
-			H: '',
+			D: 'D',
+			E: 'E',
+			F: 'F',
+			G: 'G',
+			H: 'H',
+			keyA: '@ihop:classA',
+			keyB: '@ihop:classB',
+			keyC: '@ihop:classC',
+			keyD: '@ihop:classD',
+			keyE: '@ihop:classE',
+			keyF: '@ihop:classF',
+			keyG: '@ihop:classG',
+			keyH: '@ihop:classH',
 		};
 	}
 
-	_retrieveData = async (key) => {
+	_retrieveData = async (key, location) => {
 		try {
 		  const value = await AsyncStorage.getItem(key);
 		  if (value !== null) {
 			// We have data!!
 			console.log(value);
+			this.state.location = value;
 		  }
 		 } catch (error) {
 			console.log('Error pulling from async storage');
@@ -48,12 +57,9 @@ export default class ScheduleScreen extends React.Component {
 			console.log('Error pushing to async storage');
 		}
 	  }
-
-	// updateClass = (block, stateObject) => {
-	// 	this.setState({
-	// 		block: stateObject,
-	// 	});
-	// };
+	updateClass () {
+		this._retrieveData(keyA, A);
+	};
 
 	render() {
 		return (
@@ -63,11 +69,11 @@ export default class ScheduleScreen extends React.Component {
 					background={Touchable.Ripple('#ccc', false)}
 					onPress={
 						() => this.props.navigation.navigate('AddClass', {
-							_storeData: this._storeData.bind(this)
+							storeData: item => this.setState(prevState => ({ item: prevState.item.concat([item]) }))
 						})
 }
 				>
-					<View style={{ flexDirection: 'row' }}>
+					<View style={{ flexDirection: 'row' }}>	
 						<View style={styles.optionIconContainer}>
 							<Text style={styles.bigLettersText}>A</Text>
 						</View>
@@ -80,7 +86,7 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={() => this._retrieveData('@ihop:12345')}
+					onPress={() => this._retrieveData('@ihop:classA'), }
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
