@@ -15,50 +15,22 @@ export default class ScheduleScreen extends React.Component {
 		};
 	};
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			A: 'A',
-			B: 'B',
-			C: 'C',
-			D: 'D',
-			E: 'E',
-			F: 'F',
-			G: 'G',
-			H: 'H',
-			keyA: '@ihop:classA',
-			keyB: '@ihop:classB',
-			keyC: '@ihop:classC',
-			keyD: '@ihop:classD',
-			keyE: '@ihop:classE',
-			keyF: '@ihop:classF',
-			keyG: '@ihop:classG',
-			keyH: '@ihop:classH',
-		};
-	}
+	state = {
+		A: '',
+		B: '',
+		C: '',
+		D: '',
+		E: '',
+		F: '',
+		G: '',
+		H: '',
+	};
 
-	_retrieveData = async (key, location) => {
-		try {
-		  const value = await AsyncStorage.getItem(key);
-		  if (value !== null) {
-			// We have data!!
-			console.log(value);
-			this.state.location = value;
-		  }
-		 } catch (error) {
-			console.log('Error pulling from async storage');
-}
-	  }
-	_storeData = async (key, value) => {
-		try {
-		  await AsyncStorage.setItem(key, value);
-		  console.log("Saved to async storage", value);
-		} catch (error) {
-			console.log('Error pushing to async storage');
-		}
-	  }
-	updateClass () {
-		this._retrieveData(keyA, A);
+	_updateState = block => {
+		// var classBlock = String.raw(block);
+		AsyncStorage.getItem(block).then(value => {
+			this.setState({ A: JSON.parse(value) });
+		});
 	};
 
 	render() {
@@ -67,13 +39,14 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={
-						() => this.props.navigation.navigate('AddClass', {
-							storeData: item => this.setState(prevState => ({ item: prevState.item.concat([item]) }))
+					onPress={() =>
+						this.props.navigation.navigate('AddClass', {
+							block: 'A',
+							updateState: this._updateState.bind(this),
 						})
-}
+					}
 				>
-					<View style={{ flexDirection: 'row' }}>	
+					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
 							<Text style={styles.bigLettersText}>A</Text>
 						</View>
@@ -86,7 +59,12 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={() => this._retrieveData('@ihop:classA'), }
+					onPress={() =>
+						this.props.navigation.navigate('AddClass', {
+							block: 'B',
+							updateState: this._updateState.bind(this),
+						})
+					}
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
@@ -101,14 +79,19 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={() => this.props.navigation.navigate('AddClass')}
+					onPress={() =>
+						this.props.navigation.navigate('AddClass', {
+							block: 'C',
+							updateState: this._updateState.bind(this),
+						})
+					}
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
 							<Text style={styles.bigLettersText}>C</Text>
 						</View>
 						<View style={styles.optionTextContainer}>
-							<Text style={styles.optionText}>{this.state.blockC}</Text>
+							<Text style={styles.optionText}>{this.state.C}</Text>
 						</View>
 					</View>
 				</Touchable>
@@ -116,14 +99,19 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={() => this.props.navigation.navigate('AddClass')}
+					onPress={() =>
+						this.props.navigation.navigate('AddClass', {
+							block: 'D',
+							updateState: this._updateState.bind(this),
+						})
+					}
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
 							<Text style={styles.bigLettersText}>D</Text>
 						</View>
 						<View style={styles.optionTextContainer}>
-							<Text style={styles.optionText}>{this.state.blockD}</Text>
+							<Text style={styles.optionText}>{this.state.D}</Text>
 						</View>
 					</View>
 				</Touchable>
@@ -131,14 +119,19 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={() => this.props.navigation.navigate('AddClass')}
+					onPress={() =>
+						this.props.navigation.navigate('AddClass', {
+							block: 'E',
+							updateState: this._updateState.bind(this),
+						})
+					}
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
 							<Text style={styles.bigLettersText}>E</Text>
 						</View>
 						<View style={styles.optionTextContainer}>
-							<Text style={styles.optionText}>{this.state.blockE}</Text>
+							<Text style={styles.optionText}>{this.state.E}</Text>
 						</View>
 					</View>
 				</Touchable>
@@ -146,14 +139,19 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={() => this.props.navigation.navigate('AddClass')}
+					onPress={() =>
+						this.props.navigation.navigate('AddClass', {
+							block: 'F',
+							updateState: this._updateState.bind(this),
+						})
+					}
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
 							<Text style={styles.bigLettersText}>F</Text>
 						</View>
 						<View style={styles.optionTextContainer}>
-							<Text style={styles.optionText}>{this.state.blockF}</Text>
+							<Text style={styles.optionText}>{this.state.F}</Text>
 						</View>
 					</View>
 				</Touchable>
@@ -161,14 +159,19 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={() => this.props.navigation.navigate('AddClass')}
+					onPress={() =>
+						this.props.navigation.navigate('AddClass', {
+							block: 'G',
+							updateState: this._updateState.bind(this),
+						})
+					}
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
 							<Text style={styles.bigLettersText}>G</Text>
 						</View>
 						<View style={styles.optionTextContainer}>
-							<Text style={styles.optionText}>{this.state.blockG}</Text>
+							<Text style={styles.optionText}>{this.state.G}</Text>
 						</View>
 					</View>
 				</Touchable>
@@ -176,14 +179,19 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={() => this.props.navigation.navigate('AddClass')}
+					onPress={() =>
+						this.props.navigation.navigate('AddClass', {
+							block: 'H',
+							updateState: this._updateState.bind(this),
+						})
+					}
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
 							<Text style={styles.bigLettersText}>H</Text>
 						</View>
 						<View style={styles.optionTextContainer}>
-							<Text style={styles.optionText}>{this.state.blockH}</Text>
+							<Text style={styles.optionText}>{this.state.H}</Text>
 						</View>
 					</View>
 				</Touchable>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import { createMaterialTopTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
 import ScheduleScreen from '../screens/ScheduleScreen';
@@ -65,7 +66,7 @@ SettingsStack.navigationOptions = {
 	gesturesEnabled: true,
 };
 
-export default createMaterialBottomTabNavigator(
+export default createMaterialTopTabNavigator(
 	{
 		Schedule: { screen: ScheduleStack },
 		Classes: { screen: ClassesStack },
@@ -76,7 +77,18 @@ export default createMaterialBottomTabNavigator(
 		initialRouteName: 'Classes',
 		activeColor: '#f0edf6',
 		inactiveColor: '#3e2465',
-		swipeEnabled: true,
-		barStyle: { backgroundColor: '#500000' },
+		tabBarPosition: 'bottom',
+		tabBarOptions: {
+			showIcon: true,
+			labelStyle: {
+				fontSize: 10,
+			},
+			indicatorStyle: {
+				backgroundColor: '#fff',
+			},
+			style: {
+				backgroundColor: '#500000',
+			},
+		},
 	}
 );
