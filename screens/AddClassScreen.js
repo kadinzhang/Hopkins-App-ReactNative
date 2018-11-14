@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, Text, View, Button } from 'react-native';
+import { AsyncStorage, StyleSheet, ScrollView, Text, View, Button } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Dropdown } from 'react-native-material-dropdown';
 import { TextInput } from 'react-native-paper';
@@ -32,8 +32,9 @@ export default class AddClassScreen extends React.Component {
 				<Button
 					title="submit"
 					onPress={() => {
-						this.props.navigation.state.params._storeData('@ihop:A.class', this.state.text);
+						AsyncStorage.setItem(this.props.navigation.state.params.block, JSON.stringify(this.state.text));
 						this.props.navigation.navigate('Classes');
+						this.props.navigation.state.params.updateState(this.props.navigation.state.params.block);
 					}}
 				/>
 			</View>

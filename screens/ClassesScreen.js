@@ -15,51 +15,30 @@ export default class ScheduleScreen extends React.Component {
 		};
 	};
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			A: 'A',
-			B: 'B',
-			C: 'C',
-			D: 'D',
-			E: 'E',
-			F: 'F',
-			G: 'G',
-			H: 'H',
-			keyA: '@ihop:classA',
-			keyB: '@ihop:classB',
-			keyC: '@ihop:classC',
-			keyD: '@ihop:classD',
-			keyE: '@ihop:classE',
-			keyF: '@ihop:classF',
-			keyG: '@ihop:classG',
-			keyH: '@ihop:classH',
-		};
-	}
-
-	_retrieveData = async (key, location) => {
-		try {
-		  const value = await AsyncStorage.getItem(key);
-		  if (value !== null) {
-			// We have data!!
-			console.log(value);
-			this.state.location = value;
-		  }
-		 } catch (error) {
-			console.log('Error pulling from async storage');
-}
-	  }
-	_storeData = async (key, value) => {
-		try {
-		  await AsyncStorage.setItem(key, value);
-		  console.log("Saved to async storage", value);
-		} catch (error) {
-			console.log('Error pushing to async storage');
-		}
-	  }
-	updateClass () {
-		this._retrieveData(keyA, A);
+	state = {
+		A: '',
+		B: '',
+		C: '',
+		D: '',
+		E: '',
+		F: '',
+		G: '',
+		H: '',
 	};
+
+	_updateState = block => {
+		//Load unit setting
+		AsyncStorage.getItem(block).then(value => {
+			this.setState({ B: JSON.parse(value) });
+			alert(block);
+		});
+	};
+	// _updateState = (block) => {
+	// 	//Load unit setting
+	// 	AsyncStorage.getItem('A').then(value => {
+	// 		this.setState({ A: JSON.parse(value) });
+	// 	});
+	// };
 
 	render() {
 		return (
@@ -67,13 +46,14 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={
-						() => this.props.navigation.navigate('AddClass', {
-							storeData: item => this.setState(prevState => ({ item: prevState.item.concat([item]) }))
+					onPress={() =>
+						this.props.navigation.navigate('AddClass', {
+							block: 'A',
+							updateState: this._updateState.bind(this),
 						})
-}
+					}
 				>
-					<View style={{ flexDirection: 'row' }}>	
+					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
 							<Text style={styles.bigLettersText}>A</Text>
 						</View>
@@ -86,7 +66,7 @@ export default class ScheduleScreen extends React.Component {
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
-					onPress={() => this._retrieveData('@ihop:classA'), }
+					// onPress={() => this._retrieveData('@ihop:classA'), }
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<View style={styles.optionIconContainer}>
