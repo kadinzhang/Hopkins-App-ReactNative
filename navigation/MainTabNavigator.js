@@ -82,6 +82,8 @@ export default createMaterialTopTabNavigator(
 			showIcon: true,
 			labelStyle: {
 				fontSize: 10,
+				marginBottom: 3,
+				marginTop: 6,
 			},
 			indicatorStyle: {
 				backgroundColor: '#fff',
