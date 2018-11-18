@@ -24,6 +24,7 @@ export default class ScheduleScreen extends React.Component {
 		F: '',
 		G: '',
 		H: '',
+		teacherA: '',
 	};
 
 	_updateState = block => {
@@ -46,6 +47,7 @@ export default class ScheduleScreen extends React.Component {
 					onPress={() =>
 						this.props.navigation.navigate('AddClass', {
 							block: 'A',
+							class: this.state.A,
 							updateState: this._updateState.bind(this),
 						})
 					}
@@ -66,6 +68,7 @@ export default class ScheduleScreen extends React.Component {
 					onPress={() =>
 						this.props.navigation.navigate('AddClass', {
 							block: 'B',
+							class: this.state.B,
 							updateState: this._updateState.bind(this),
 						})
 					}
@@ -86,6 +89,7 @@ export default class ScheduleScreen extends React.Component {
 					onPress={() =>
 						this.props.navigation.navigate('AddClass', {
 							block: 'C',
+							class: this.state.C,
 							updateState: this._updateState.bind(this),
 						})
 					}
@@ -106,6 +110,7 @@ export default class ScheduleScreen extends React.Component {
 					onPress={() =>
 						this.props.navigation.navigate('AddClass', {
 							block: 'D',
+							class: this.state.D,
 							updateState: this._updateState.bind(this),
 						})
 					}
@@ -126,6 +131,7 @@ export default class ScheduleScreen extends React.Component {
 					onPress={() =>
 						this.props.navigation.navigate('AddClass', {
 							block: 'E',
+							class: this.state.E,
 							updateState: this._updateState.bind(this),
 						})
 					}
@@ -146,6 +152,7 @@ export default class ScheduleScreen extends React.Component {
 					onPress={() =>
 						this.props.navigation.navigate('AddClass', {
 							block: 'F',
+							class: this.state.F,
 							updateState: this._updateState.bind(this),
 						})
 					}
@@ -166,6 +173,7 @@ export default class ScheduleScreen extends React.Component {
 					onPress={() =>
 						this.props.navigation.navigate('AddClass', {
 							block: 'G',
+							class: this.state.G,
 							updateState: this._updateState.bind(this),
 						})
 					}
@@ -186,6 +194,7 @@ export default class ScheduleScreen extends React.Component {
 					onPress={() =>
 						this.props.navigation.navigate('AddClass', {
 							block: 'H',
+							class: this.state.H,
 							updateState: this._updateState.bind(this),
 						})
 					}

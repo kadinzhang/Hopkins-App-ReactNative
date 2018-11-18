@@ -14,13 +14,23 @@ export default class AddClassScreen extends React.Component {
 
 	state = {
 		text: '',
+		teacher: '',
+		classInputLabel: 'Class',
 	};
-
+	_checkIfClassExists = () => {
+		if(this.props.navigation.state.params.class != ''){
+			this.setState({classInputLabel: this.props.navigation.state.params.class});
+			console.log(this.state.classInputLabel);
+		}
+	}
+	componentWillMount(){
+		this._checkIfClassExists();
+	}
 	render() {
 		return (
 			<View style={styles.container}>
 				<TextInput
-					label="Class"
+					label={this.state.classInputLabel}
 					value={this.state.text}
 					onChangeText={text =>
 						this.setState({
@@ -29,6 +39,7 @@ export default class AddClassScreen extends React.Component {
 					}
 				/>
 				<Text />
+
 				<Button
 					title="submit"
 					onPress={() => {
@@ -37,6 +48,7 @@ export default class AddClassScreen extends React.Component {
 						this.props.navigation.state.params.updateState(this.props.navigation.state.params.block);
 					}}
 				/>
+			
 			</View>
 		);
 	}
