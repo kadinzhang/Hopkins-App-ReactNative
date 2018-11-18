@@ -16,33 +16,33 @@ export default class ScheduleScreen extends React.Component {
 	};
 
 	state = {
-		A: 'English 11',
-		B: 'Math 68',
+		A: '',
+		B: '',
 		C: '',
 		D: '',
 		E: '',
 		F: '',
 		G: '',
 		H: '',
-		teacherA: 'Turner',
-		teacherB: 'McCord',
+		teacherA: '',
+		teacherB: '',
 		teacherC: '',
 		teacherD: '',
 		teacherE: '',
 		teacherF: '',
 		teacherG: '',
 		teacherH: '',
-		roomA: 'B203',
+		roomA: '',
 	};
 
-	_updateState = block => {
+	_updateState = key => {
 		//Load unit setting
-		AsyncStorage.getItem(block).then(
+		AsyncStorage.getItem(key).then(
 			value => {
-				this.setState({[block]: JSON.parse(value) });
+				this.setState({[key]: JSON.parse(value) });
+				console.log(key + ' ' + value);
 			}
 		);
-	
 	};
 
 	render() {
@@ -56,6 +56,10 @@ export default class ScheduleScreen extends React.Component {
 						this.props.navigation.navigate('AddClass', {
 							block: 'A',
 							class: this.state.A,
+							teacherKey: 'teacherA',
+							teacher: this.state.teacherA,
+							room : this.state.roomA,
+							roomKey: 'roomA',
 							updateState: this._updateState.bind(this),
 						})
 					}
@@ -257,10 +261,10 @@ const styles = StyleSheet.create({
 
 	},
 	optionText: {
-		fontSize: 15,
+		fontSize: 18,
 		textAlign: 'center',
 		paddingHorizontal: 10,
-		paddingVertical: 13,
+		paddingVertical: 10,
 		marginRight: 100,
 	},
 

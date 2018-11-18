@@ -22,9 +22,15 @@ export default class AddClassScreen extends React.Component {
 	};
 	_checkIfClassExists = () => {
 		if(this.props.navigation.state.params.class != ''){
-			this.setState({classInputLabel: this.props.navigation.state.params.class});
-			console.log(this.state.classInputLabel);
+			this.setState({text: this.props.navigation.state.params.class});
 		}
+		if(this.props.navigation.state.params.teacher != ''){
+			this.setState({teacher: this.props.navigation.state.params.teacher});
+		}
+		if(this.props.navigation.state.params.room != ''){
+			this.setState({room: this.props.navigation.state.params.room});
+		}
+		
 	}
 	componentWillMount(){
 		this._checkIfClassExists();
@@ -44,7 +50,7 @@ export default class AddClassScreen extends React.Component {
 				/>
 				<TextInput
 					style={styles.textInput}
-					label={this.state.roomInputLabel}
+					label={this.state.teacherInputLabel}
 					value={this.state.teacher}
 					onChangeText={teacher =>
 						this.setState({
@@ -54,7 +60,7 @@ export default class AddClassScreen extends React.Component {
 				/>
 				<TextInput
 					style={styles.textInput}
-					label={this.state.teacherInputLabel}
+					label={this.state.roomInputLabel}
 					value={this.state.room}
 					onChangeText={room =>
 						this.setState({
@@ -68,8 +74,15 @@ export default class AddClassScreen extends React.Component {
 					title="submit"
 					onPress={() => {
 						AsyncStorage.setItem(this.props.navigation.state.params.block, JSON.stringify(this.state.text));
+						AsyncStorage.setItem(this.props.navigation.state.params.teacherKey, JSON.stringify(this.state.teacher));
+						AsyncStorage.setItem(this.props.navigation.state.params.roomKey, JSON.stringify(this.state.room));
+
 						this.props.navigation.navigate('Classes');
 						this.props.navigation.state.params.updateState(this.props.navigation.state.params.block);
+						this.props.navigation.state.params.updateState(this.props.navigation.state.params.teacherKey);
+						this.props.navigation.state.params.updateState(this.props.navigation.state.params.roomKey);
+
+
 					}}
 				/>
 			
