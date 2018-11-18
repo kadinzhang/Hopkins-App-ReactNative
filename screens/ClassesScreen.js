@@ -16,15 +16,22 @@ export default class ScheduleScreen extends React.Component {
 	};
 
 	state = {
-		A: '',
-		B: '',
+		A: 'English 11',
+		B: 'Math 68',
 		C: '',
 		D: '',
 		E: '',
 		F: '',
 		G: '',
 		H: '',
-		teacherA: '',
+		teacherA: 'Turner',
+		teacherB: 'McCord',
+		teacherC: '',
+		teacherD: '',
+		teacherE: '',
+		teacherF: '',
+		teacherG: '',
+		teacherH: '',
 	};
 
 	_updateState = block => {
@@ -32,7 +39,6 @@ export default class ScheduleScreen extends React.Component {
 		AsyncStorage.getItem(block).then(
 			value => {
 				this.setState({[block]: JSON.parse(value) });
-					console.log(block);
 			}
 		);
 	
@@ -41,6 +47,7 @@ export default class ScheduleScreen extends React.Component {
 	render() {
 		return (
 			<ScrollView style={styles.container}>
+
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
@@ -52,14 +59,18 @@ export default class ScheduleScreen extends React.Component {
 						})
 					}
 				>
-					<View style={{ flexDirection: 'row' }}>
+					<View style={styles.textLine}>
 						<View style={styles.optionIconContainer}>
 							<Text style={styles.bigLettersText}>A</Text>
 						</View>
 						<View style={styles.optionTextContainer}>
 							<Text style={styles.optionText}>{this.state.A}</Text>
+						</View> 
+						<View> 
+							<Text style={styles.teacherText}>{this.state.teacherA}</Text>
 						</View>
 					</View>
+					
 				</Touchable>
 
 				<Touchable
@@ -73,12 +84,15 @@ export default class ScheduleScreen extends React.Component {
 						})
 					}
 				>
-					<View style={{ flexDirection: 'row' }}>
+					<View style={styles.textLine}>
 						<View style={styles.optionIconContainer}>
 							<Text style={styles.bigLettersText}>B</Text>
 						</View>
 						<View style={styles.optionTextContainer}>
 							<Text style={styles.optionText}>{this.state.B}</Text>
+						</View>
+						<View> 
+							<Text style={styles.teacherText}>{this.state.teacherB}</Text>
 						</View>
 					</View>
 				</Touchable>
@@ -220,7 +234,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#cecaca',
 	},
 	optionIconContainer: {
-		marginRight: 9,
+		marginRight: 0,		
 	},
 	option: {
 		backgroundColor: '#fdfdfd',
@@ -228,16 +242,31 @@ const styles = StyleSheet.create({
 		paddingVertical: 15,
 		borderBottomWidth: StyleSheet.hairlineWidth,
 		borderBottomColor: '#EDEDED',
+
+	},
+	teacherText: {
+		backgroundColor: '#fdfdfd',
+		fontSize: 15,
+		textAlign: 'center',
+		paddingHorizontal: 10,
+		paddingVertical: 13,
+
 	},
 	optionText: {
 		fontSize: 15,
 		textAlign: 'center',
 		paddingHorizontal: 10,
 		paddingVertical: 13,
+		marginRight: 100,
 	},
+
 	bigLettersText: {
 		fontSize: 35,
 		color: 'maroon',
 		fontWeight: 'bold',
 	},
+	textLine: {
+		flexDirection: 'row', 
+		justifyContent:'space-between' 
+	}
 });
