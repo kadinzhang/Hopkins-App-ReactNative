@@ -32,6 +32,7 @@ export default class ScheduleScreen extends React.Component {
 		teacherF: '',
 		teacherG: '',
 		teacherH: '',
+		roomA: 'B203',
 	};
 
 	_updateState = block => {
@@ -66,8 +67,11 @@ export default class ScheduleScreen extends React.Component {
 						<View style={styles.optionTextContainer}>
 							<Text style={styles.optionText}>{this.state.A}</Text>
 						</View> 
-						<View> 
+
+						<View style={styles.stackedText}> 
 							<Text style={styles.teacherText}>{this.state.teacherA}</Text>
+						
+							<Text style={styles.teacherText}>{this.state.roomA}</Text>
 						</View>
 					</View>
 					
@@ -249,7 +253,7 @@ const styles = StyleSheet.create({
 		fontSize: 15,
 		textAlign: 'center',
 		paddingHorizontal: 10,
-		paddingVertical: 13,
+		paddingVertical: 2,
 
 	},
 	optionText: {
@@ -267,6 +271,10 @@ const styles = StyleSheet.create({
 	},
 	textLine: {
 		flexDirection: 'row', 
-		justifyContent:'space-between' 
+		justifyContent:'space-between', 
+	},
+	stackedText: {
+		flexDirection: 'column',
+		justifyContent: 'space-between',
 	}
 });
