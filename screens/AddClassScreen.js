@@ -71,18 +71,15 @@ export default class AddClassScreen extends React.Component {
 				<Text />
 
 				<Button
-					title="submit"
+					title="Submit"
 					onPress={() => {
 						AsyncStorage.setItem(this.props.navigation.state.params.block, JSON.stringify(this.state.text));
 						AsyncStorage.setItem(this.props.navigation.state.params.teacherKey, JSON.stringify(this.state.teacher));
 						AsyncStorage.setItem(this.props.navigation.state.params.roomKey, JSON.stringify(this.state.room));
-
 						this.props.navigation.navigate('Classes');
 						this.props.navigation.state.params.updateState(this.props.navigation.state.params.block);
 						this.props.navigation.state.params.updateState(this.props.navigation.state.params.teacherKey);
 						this.props.navigation.state.params.updateState(this.props.navigation.state.params.roomKey);
-
-
 					}}
 				/>
 			

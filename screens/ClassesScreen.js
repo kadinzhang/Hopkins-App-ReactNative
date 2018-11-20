@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import Touchable from 'react-native-platform-touchable';
 import { StackNavigator } from 'react-navigation';
 import AddClass from './AddClassScreen';
+import ClassesBlock from '../components/ClassesBlock';
 
 export default class ScheduleScreen extends React.Component {
 	//TOPBAR
@@ -40,7 +41,6 @@ export default class ScheduleScreen extends React.Component {
 		AsyncStorage.getItem(key).then(
 			value => {
 				this.setState({[key]: JSON.parse(value) });
-				console.log(key + ' ' + value);
 			}
 		);
 	};
@@ -49,6 +49,13 @@ export default class ScheduleScreen extends React.Component {
 		return (
 			<ScrollView style={styles.container}>
 
+				<ClassesBlock
+					 _teacher = 'Heyo'
+					 _room = 'Heasdf '
+					 _class = 'asfd'
+				/>
+
+				
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
@@ -71,14 +78,11 @@ export default class ScheduleScreen extends React.Component {
 						<View style={styles.optionTextContainer}>
 							<Text style={styles.optionText}>{this.state.A}</Text>
 						</View> 
-
 						<View style={styles.stackedText}> 
 							<Text style={styles.teacherText}>{this.state.teacherA}</Text>
-						
 							<Text style={styles.teacherText}>{this.state.roomA}</Text>
 						</View>
-					</View>
-					
+					</View>					
 				</Touchable>
 
 				<Touchable
@@ -261,10 +265,10 @@ const styles = StyleSheet.create({
 
 	},
 	optionText: {
-		fontSize: 18,
+		fontSize: 15,
 		textAlign: 'center',
 		paddingHorizontal: 10,
-		paddingVertical: 10,
+		paddingVertical: 13,
 		marginRight: 100,
 	},
 
