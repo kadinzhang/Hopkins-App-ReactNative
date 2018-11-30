@@ -14,23 +14,24 @@ export default function ClassesBlock({
   _teacher = '',
   _room = '',
   _class = '',
+  onButtonPress,
 }) {
 
 	return (
 		<Touchable
 			style={styles.option}
 			background={Touchable.Ripple('#ccc', false)}
-			// onPress={() =>
-			// 	this.props.navigation.navigate('AddClass', {
-			// 		block: block,
-			// 		class: this.state.A,
-			// 		teacherKey: teacherKey,
-			// 		teacher: this.state.teacherA,
-			// 		room : this.state.roomA,
-			// 		roomKey: roomKey,
-			// 		updateState: this._updateState.bind(this),
-			// 	})
-			// }
+			onPress={onButtonPress}
+
+				// this.props.navigation.navigate('AddClass', {
+					// block: block,
+					// class: this.state.A,
+					// teacherKey: teacherKey,
+					// teacher: this.state.teacherA,
+					// room : this.state.roomA,
+					// roomKey: roomKey,
+					// updateState: this._updateState.bind(this),
+				// })
 		>
 			<View style={styles.textLine}>
 				<View style={styles.optionIconContainer}>
@@ -52,7 +53,7 @@ ClassesBlock.propTypes = {
 	_room: PropTypes.string.isRequired,
 	_class: PropTypes.string.isRequired,
 	_teacher: PropTypes.string.isRequired,
-	
+	onButtonPress: PropTypes.func.isRequired,
 	
 };
 

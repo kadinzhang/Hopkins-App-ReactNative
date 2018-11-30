@@ -15,9 +15,10 @@ export default class ScheduleScreen extends React.Component {
 			title: 'Classes',
 		};
 	};
-
+	//class, teacher, room
 	state = {
 		A: '',
+		blockA: ['English 11', 'Ms. Kelly', 'B301'],
 		B: '',
 		C: '',
 		D: '',
@@ -36,11 +37,11 @@ export default class ScheduleScreen extends React.Component {
 		roomA: '',
 	};
 
-	_updateState = key => {
+	_updateState = (key, arrayIndex) => {
 		//Load unit setting
 		AsyncStorage.getItem(key).then(
 			value => {
-				this.setState({[key]: JSON.parse(value) });
+				this.setState({[key]: JSON.parse(value)});
 			}
 		);
 	};
@@ -49,13 +50,37 @@ export default class ScheduleScreen extends React.Component {
 		return (
 			<ScrollView style={styles.container}>
 
-				<ClassesBlock
-					 _teacher = 'Heyo'
-					 _room = 'Heasdf '
-					 _class = 'asfd'
-				/>
+				<Touchable
+					style={styles.option}
+					background={Touchable.Ripple('#ccc', false)}
+					onPress={() =>
+						this.props.navigation.navigate('AddClass', {
+							//make it so you only input an array
+							block: 'blockA',
+							class: this.state.blockA.class,
+							teacherKey: 'teacherA',
+							teacher: this.state.blockA.teacher,
+							room : this.state.blockA.room,
+							roomKey: 'roomA',
+							updateState: this._updateState.bind(this),
+							//block: this.state.blockA
+						})
+					}
+				>
+					<View style={styles.textLine}>
+						<View style={styles.optionIconContainer}>
+							<Text style={styles.bigLettersText}>A</Text>
+						</View>
+						<View style={styles.optionTextContainer}>
+							<Text style={styles.optionText}>{this.state.blockA[0]}</Text>
+						</View> 
+						<View style={styles.stackedText}> 
+							<Text style={styles.teacherText}>{this.state.blockA[1]}</Text>
+							<Text style={styles.teacherText}>{this.state.blockA[2]}</Text>
+						</View>
+					</View>					
+				</Touchable>
 
-				
 				<Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
@@ -84,6 +109,7 @@ export default class ScheduleScreen extends React.Component {
 						</View>
 					</View>					
 				</Touchable>
+
 
 				<Touchable
 					style={styles.option}

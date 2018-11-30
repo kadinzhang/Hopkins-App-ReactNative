@@ -13,12 +13,11 @@ export default class AddClassScreen extends React.Component {
 	};
 
 	state = {
+		//block: ['', '', ''],
 		text: '',
 		teacher: '',
 		room: '',
-		classInputLabel: 'Class',
-		roomInputLabel: 'Room',
-		teacherInputLabel: 'Teacher',
+
 	};
 	_checkIfClassExists = () => {
 		if(this.props.navigation.state.params.class != ''){
@@ -40,7 +39,7 @@ export default class AddClassScreen extends React.Component {
 			<View style={styles.container}>
 				<TextInput
 					style={styles.textInput}
-					label={this.state.classInputLabel}
+					label='Class'
 					value={this.state.text}
 					onChangeText={text =>
 						this.setState({
@@ -50,7 +49,7 @@ export default class AddClassScreen extends React.Component {
 				/>
 				<TextInput
 					style={styles.textInput}
-					label={this.state.teacherInputLabel}
+					label='Teacher'
 					value={this.state.teacher}
 					onChangeText={teacher =>
 						this.setState({
@@ -60,7 +59,7 @@ export default class AddClassScreen extends React.Component {
 				/>
 				<TextInput
 					style={styles.textInput}
-					label={this.state.roomInputLabel}
+					label='Room'
 					value={this.state.room}
 					onChangeText={room =>
 						this.setState({
