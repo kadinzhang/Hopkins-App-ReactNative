@@ -17,8 +17,7 @@ export default class ScheduleScreen extends React.Component {
 	};
 	//class, teacher, room
 	state = {
-		A: '',
-		blockA: ['English 11', 'Ms. Kelly', 'B301'],
+		blockA: ['blockA', 'English 11', 'Ms. Kelly', 'B301'],
 		B: '',
 		C: '',
 		D: '',
@@ -37,13 +36,26 @@ export default class ScheduleScreen extends React.Component {
 		roomA: '',
 	};
 
-	_updateState = (key, arrayIndex) => {
+	_updateState = async(key) => {
 		//Load unit setting
-		AsyncStorage.getItem(key).then(
-			value => {
-				this.setState({[key]: JSON.parse(value)});
+		var temp = ['','','',''];
+		// AsyncStorage.getItem(key).then(
+		// 	value => {
+		// 		temp = JSON.parse(value);
+		// 		this.setState({[key]: [temp]});
+				
+		// 	}
+		// );
+		try {
+			const value = await AsyncStorage.getItem(key);
+			if (value !== null) {
+				temp = JSON.parse(value);
+				this.setState({[key]: [temp]});
+				console.log(this.state.blockA);
 			}
-		);
+		   } catch (error) {
+			 // Error retrieving data
+		   }
 	};
 
 	render() {
@@ -55,15 +67,8 @@ export default class ScheduleScreen extends React.Component {
 					background={Touchable.Ripple('#ccc', false)}
 					onPress={() =>
 						this.props.navigation.navigate('AddClass', {
-							//make it so you only input an array
-							block: 'blockA',
-							class: this.state.blockA.class,
-							teacherKey: 'teacherA',
-							teacher: this.state.blockA.teacher,
-							room : this.state.blockA.room,
-							roomKey: 'roomA',
 							updateState: this._updateState.bind(this),
-							//block: this.state.blockA
+							blockArray: this.state.blockA,
 						})
 					}
 				>
@@ -72,16 +77,16 @@ export default class ScheduleScreen extends React.Component {
 							<Text style={styles.bigLettersText}>A</Text>
 						</View>
 						<View style={styles.optionTextContainer}>
-							<Text style={styles.optionText}>{this.state.blockA[0]}</Text>
+							<Text style={styles.optionText}>{this.state.blockA[1]}</Text>
 						</View> 
 						<View style={styles.stackedText}> 
-							<Text style={styles.teacherText}>{this.state.blockA[1]}</Text>
 							<Text style={styles.teacherText}>{this.state.blockA[2]}</Text>
+							<Text style={styles.teacherText}>{this.state.blockA[3]}</Text>
 						</View>
 					</View>					
 				</Touchable>
 
-				<Touchable
+				{/* <Touchable
 					style={styles.option}
 					background={Touchable.Ripple('#ccc', false)}
 					onPress={() =>
@@ -108,7 +113,7 @@ export default class ScheduleScreen extends React.Component {
 							<Text style={styles.teacherText}>{this.state.roomA}</Text>
 						</View>
 					</View>					
-				</Touchable>
+				</Touchable> */}
 
 
 				<Touchable
